@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head >
+	<meta charset="UTF-8">
+	<title>Main</title>
+</head>
+
+<body>
+		<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        <span><a href="user">User list</a></span>
+        
+
+<div>
+	<form method="post" enctype="multipart/form-data">
+		<input type="text" name="text" placeholder="Введите сообщение"/>
+		<input type="text" name="tag" placeholder="Тэг"/>
+		<input type="file" name="file">
+		<button type="submit">Добавить</button>
+	
+	
+	
+	</form>
+
+</div>
+	<form method="post" action="filter">
+		<input type="text" name="filter">
+		<button type="submit">Найти</button>
+	
+	</form>
+
+<div th:each="message : ${messages}">
+	<p style="display:inline" th:text="${message.getId()}">Id: </p> 
+	<p style="display:inline" th:text="${message.getText()}">Text: </p> 
+	<p style="display:inline" th:text="${message.getTag()}">Tag: </p> 
+	<p style="display:inline" th:text="${message.getAuthorName()}">Tag: </p> 
+	<div th:if="${message.filename}">
+		<img th:src="@{/img/{filename}(filename=${message.filename})}">
+	
+	</div>
+
+</div>
+	
+
+
+
+</body>
+
+
+</html>
